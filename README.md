@@ -1,7 +1,11 @@
-## EXPERIMENT-04-TRASFERING-DATA-TO-MQTT-CLOUD-USING-PYTHON-INTERFACE-
-### NAME: Kathiresan K
+### NAME: KATHIRESAN
 ### ROLL NO: 212223110021
-### DEPARTMENT : CSE(IOT)
+### DEPARTMENT: CSE(IOT)
+
+
+## EXPERIMENT-04-TRASFERING-DATA-TO-MQTT-CLOUD-USING-PYTHON-INTERFACE-
+
+
 
 ## AIM:
 To transfer data from a Python script to an MQTT cloud server (HiveMQ Cloud) using the MQTT protocol. 
@@ -132,41 +136,44 @@ Run the Python script.
 
 Check if the message appears in the HiveMQ Web Client.
 ## PROGRAM
-[
-```
-
-
-
+```py
 import paho.mqtt.client as mqtt
 import time
 import random
 import ssl
 
-broker="9f6ca324f84346509a1843f3d3391128.s1.eu.hivemq.cloud"
-port = 8883
-topic = "iot1/demo/sensor"
+broker="bf57e952135f4737a53af447f5991f92.s1.eu.hivemq.cloud"
+port=8883
+topic="iot/sensor/data"
 
-username= "hivemq.webclient.1761189750095"
-password="z49j&G<Rg@3,haMQKB8r"
+username="hivemq.webclient.1761189934360"
+password="LCP@Kag#3$b4n2RzNo.0"
 
 client=mqtt.Client(client_id="publisher")
-client.username_pw_set(username,password)
+client.username_pw_set(username, password)
 client.tls_set(tls_version=ssl.PROTOCOL_TLS)
-client.connect(broker,port)
+client.connect(broker, port)
+
 while True:
-    temperature=round(random.uniform(20.0,30.0),2)
-    humidity = round(random.uniform(30.0,70.0),2)
-    payload=f"Temperature: {temperature:.2f} *C,Humdity: {humidity:.2f}%"
-    client.publish(topic,payload)
-    print(f" Published: {payload} -> {topic}")
+    temperature = round(random.uniform(20.0, 30.0),2)
+    humidity = round(random.uniform(30.0, 90.0),2)
+    payload = f'{{"temperature": {temperature:.2f}, "humidity": {humidity:.2f}}}'
+    client.publish(topic, payload)
+    print(f"Published: {payload} to topic: {topic}")
     time.sleep(5)
 
-
 ```
-]
 
-### OUTPUT SCREENSHOTS
-<img width="1919" height="962" alt="image" src="https://github.com/user-attachments/assets/5891f67f-7cdf-4a11-8451-299a5ff187cf" />
+
+
+
+
+
+
+### OUTPUT SCREENSHOTS:
+<img width="1906" height="977" alt="image" src="https://github.com/user-attachments/assets/416cf93d-fe62-4528-b1c0-f607c94c5d96" />
+
+
 
 
 ## Results
